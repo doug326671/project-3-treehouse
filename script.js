@@ -13,64 +13,18 @@ const name = $('#name').focus();// grab the name in the html doc,start cursor in
 
 const textBoxForOther = $('#otherText').hide();//hide the text box until other is clicked
 
-//const $selectOther = $("#title").val('full-stack js developer');
-
-//var $selectOther = $("#otherTextBox");// selects the 'other' value in the html doc
-
-var textSelector = $("[id = textBox]");
-
-$("[id = textBox]").on('click',function(){
-    textBoxForOther.show();
-});
+const $selectOther = $("#title").val('other');// selects the 'other' value in the html doc
 
 
-
-
-
-
-
-
-
-// $("#title #textBox").click(function(){
-//     $("#otherText");textBoxForOther.show();
-// });
-
-
-
-
-// $selectOther.on('click', function(event){
-   
-//     $selectOther.event.target;
-//       if ($selectOther){
-//        textBoxForOther.show();
-  
-//       }else{
-//           textBoxForOther.hide();
-//       }
+$selectOther.on('click', function(event){
       
-//     });
+      if ('click'){
+       textBoxForOther.show();
+  
+      }else{
+          textBoxForOther.hide();
+      }
+      
+    });
     
   
-
-    
-        // $("#otherTextBox").click(function(){
-        //     textBoxForOther.show();
-        // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // $("#title :selected").val('other').click(function(){
-        //     alert('clicked');
-        //     textBoxForOther.show();
-        // });
-      
