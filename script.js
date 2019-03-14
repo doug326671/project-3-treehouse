@@ -37,24 +37,40 @@ var selectAshirtTheme = $('#design').click(function(){ // choose the design id s
 /*
     need to listen for checkbox clicks, then need to get the content of whatever is in each differnet check boxes when checked, 
     then need to pull the first number out of each and compare it to something else that was clicked, i might 
-    be able to make an array out of all the checkboxes then cycle through each one
+    be able to make an array out of all the checkboxes then cycle through each one.
+    'this' is acting like a variable 
+    the match method will searchs a string for a match against a regular expression and returns the matches as array object
+    The map() method creates a new array with the results of calling a function for every array element.
+    The map() method calls the provided function once for each element in an array, in order.
+
 */
+//the each will go through all the checkboxes and return them in an array
+// var loopThroughAllCheckBoxes = $('input[type=checkbox]').click(function(){
+//          var newArray = [];
+//     selectRegisterForActivities = $(this)[0].nextSibling.nodeValue.match(/\d+/);//get the content of what is clicked,keeps making new array objects
+//     newArray.push($(this).val());
+//     console.log(newArray);
+//     console.log(selectRegisterForActivities);
 
-var selectRegisterForActivities1 = $('input[type=checkbox]').click(
-    function(){
-        if (this.checked) {// if something is clicked
-            selectRegisterForActivities1 = $(this)[0].nextSibling.nodeValue;//get the content of what is clicked an compare it to something else that was clicked
-            console.log(selectRegisterForActivities1);
-        }
-    });
-
-    var selectRegisterForActivities2 = $('input[type=checkbox]').click(
-        function(){
-            if (this.checked) {// if something is clicked
-                selectRegisterForActivities2 = $(this)[0].nextSibling.nodeValue;//get the content of what is clicked an compare it to something else that was clicked
-                console.log(selectRegisterForActivities2);
-            }
-        });
-    
+// });
 
 
+
+var newArray = [];         
+var loopThroughAllCheckBoxes = $("input[type=checkbox]").each(function(e) {
+       
+        $(this).click(function() {
+        var putClickedBoxInArray = newArray.push($(this).prop("checked",));
+        console.log(putClickedBoxInArray);
+        console.log(newArray);
+        var firstItemClicked = newArray[0];
+        //firstItemClicked.val();
+        console.log(firstItemClicked);
+        }); 
+});
+
+ /*
+    so everytime we put something out of the block on the inside that is where the each with take effect
+    and go through all the check boxes at once and display them in the console. now the function on the 
+    inside is what is putting the clicked items in the array 
+ */
