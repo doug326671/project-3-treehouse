@@ -1,6 +1,6 @@
 
 //on page onload get the cursor to go insid the name first.
-const name = $('#name').focus();// grab the name in the html doc,start cursor in box
+const name = $('#name').focus();
 
 const textBoxForOther = $('#otherText').hide();//hide the text box until other is clicked
 
@@ -14,11 +14,11 @@ $('#title').change(function(){
     }
 });
 
-
 /*
 put a listener on the design portion and nothing will happen with the color till something is clicked 
 if js puns is clicked then show certain shirt colors and if i heart js is clicked then show the other 
 shirt colors. toggle between shirt colors depending on what is clicked.
+prop is a method 
 */
 var colorActivate = $('#color').prop('disabled',true);// start off by disable the color drop down.
 var selectAshirtTheme = $('#design').click(function(){ // choose the design id so it can listen for clicks
@@ -26,52 +26,136 @@ var selectAshirtTheme = $('#design').click(function(){ // choose the design id s
     var selectedTheme = $(this).val(); // click on js puns or i heart js it will be stored in selected theme
     if(selectedTheme == 'js puns'){
         $('#color option:contains("JS shirt only")').toggle();  
+        $("#color").val("cornflowerblue");
     } else if(selectedTheme === 'heart js'){ 
         $('#color option:contains("JS Puns shirt only")').toggle();
+        $("#color").val("tomato");
     } else if(selectedTheme != 'heart js' && 'js puns'){ // if either of the options are selected disable color
         colorActivate.prop('disabled',true);
+    } 
+});
+
+// select the checkboxes and assign them to variables      .prop('disabled',true)
+var all = $("input[name ='all']");
+var jsFrameworks = $("input[name ='js-frameworks']");
+var jsLibs = $("input[name ='js-libs']");
+var express = $("input[name ='express']");
+var node = $("input[name ='node']");
+var buildTools = $("input[name ='build-tools']");
+var npm = $("input[name ='npm']");
+
+//var totalPrice = [];
+var sum = 0;
+console.log(sum);
+
+var listTotal = $(".activities").append("Total:");
+
+
+var allCheckbox = all.change(function(){
+    var checked = $(this).prop('checked');
+    if(checked){
+        sum += 200;
+        listTotal.append(sum);
+    }else if($(this).prop('checked',false)){
+        sum  -= 200;
+        listTotal.append(sum);
+    }
+    
+});
+
+
+
+var jsFrameworksCheckbox = jsFrameworks.change(function(){
+    var checked = $(this).prop('checked');
+    if(checked){
+        sum += 100;
+        listTotal.append( sum );
+    }else if($(this).prop('checked',false)){
+        sum -=100;
+        listTotal.append( sum );
+    }
+    if(checked){
+        express.prop('disabled',true);
+
+    }else{
+        express.prop('disabled',false);
     }
 });
 
-/*
+//if the express event is clicked then disable any other event that will run in conflict
+var expressCheckbox = express.change(function(){
+    var checked = $(this).prop('checked');
+    if(checked){
+        sum += 100;
+        console.log(sum);
+    }else if($(this).prop('checked',false)){
+        sum -=100;
+        console.log(sum);
+    }
+    if(checked){
+        jsFrameworks.prop('disabled',true);
 
-*/
-
-
-var getTheBoxes = $('.activities').children();// all the checkboxes are selected and stored in a variable 
-var checkboxesClicked =[];// this is the array that will hold all the clicked checkboxes
-
-getTheBoxes.click(function(){ // calling the click function on the getTheBoxes variable to listen for clicks
-        
-        var putClickedBoxInArray = checkboxesClicked.push($(this)[0]);// everything that is clicked push it into checkboxesClicked
-        console.log(putClickedBoxInArray);// shows how many checkboxes are in the array
-        console.log(checkboxesClicked);// shows what is int the array
-        
-        var firstItemClicked = checkboxesClicked[0];//will select the first item that was clicked in the array
-        console.log(firstItemClicked, 'first item');// show the first item clicked.
-        
-        var secondItemClicked = checkboxesClicked[1];
-        console.log(secondItemClicked,'second item');
-        
-        var thirdItemClicked = checkboxesClicked[2];
-        console.log(thirdItemClicked,'third item');
-       
-        var convertToStringFirstItem = firstItemClicked.textContent.match(/\d+/g);//taking the first item and getting the numbers and putting it into an array
-        console.log(convertToStringFirstItem);
-        
-        var convertToStringSecondItem = secondItemClicked.textContent.match(/\d+/g);//taking the first item and getting the numbers
-        console.log(convertToStringSecondItem);
-
-        if(firstItemClicked[0]==secondItemClicked[0]){
-            alert('starts at same time');
-        }
-
-        //var regex = /\d+/;
-        //var getTheNumbers = firstItemClicked.search(regex);
-        //console.log(getTheNumbers);
+    }else{
+        jsFrameworks.prop('disabled',false);
+    }
 });
 
-/*
-    need to make a for loop or something that checks the boxes that were checked to see if there is any conflict
-    between the checkboxes
-*/
+// if the java script libraries is checked then disbale anyother event
+
+var jsLibsCheckbox =jsLibs.change(function(){
+    var checked = $(this).prop('checked');
+    if(checked){
+        sum += 100;
+        console.log(sum);
+    }else if($(this).prop('checked',false)){
+        sum -=100;
+        console.log(sum);
+    }
+    if(checked){
+        node.prop('disabled',true);
+
+    }else{
+        node.prop('disabled',false);
+    }
+});
+
+// if the node event is clicked then disable anyother event that will come into conflict
+var nodeCheckbox =node.change(function(){
+    var checked = $(this).prop('checked');
+    if(checked){
+        sum += 100;
+        console.log(sum);
+    }else if($(this).prop('checked',false)){
+        sum -=100;
+        console.log(sum);
+    }
+    if(checked){
+        jsLibs.prop('disabled',true);
+
+    }else{
+        jsLibs.prop('disabled',false);
+    }
+});
+
+var buildToolsCheckbox =buildTools.change(function(){
+    var checked = $(this).prop('checked');
+    if(checked){
+        sum += 100;
+        console.log(sum);
+    }else if($(this).prop('checked',false)){
+        sum -=100;
+        console.log(sum);
+    }
+});
+
+var npmCheckbox = npm.change(function(){
+    var checked = $(this).prop('checked');
+    if(checked){
+        sum += 100;
+        console.log(sum);
+    }else if($(this).prop('checked',false)){
+        sum -=100;
+        console.log(sum);
+    }
+});
+
